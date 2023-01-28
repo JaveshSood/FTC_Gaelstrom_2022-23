@@ -28,8 +28,8 @@ public class MSJHardware {
     public Servo clawServo = null;
     public DcMotor extenderMotor = null;
 
-       /* public ColorSensor colorSensor;
-        public Servo dropperServo = null;
+        public ColorSensor colorSensor;
+        /*public Servo dropperServo = null;
         public Servo armServo = null;
         */
 
@@ -88,8 +88,10 @@ public class MSJHardware {
         //Connect intake Motors
           /*  intakeMotor = hwMap.get(DcMotor.class, "intakeMotor");
            armMotor = hwMap.get(DcMotor.class, "armMotor");
-            colorSensor = hwMap.get(ColorSensor.class, "colorSensor");
+
            */
+            colorSensor = hwMap.get(ColorSensor.class, "colorSensor");
+
         //Set Up Motor Direction
         frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
         frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
@@ -157,7 +159,7 @@ public class MSJHardware {
         extenderMotor.setPower(0);
 
         //spinnerMotor.setPower(0);
-        clawServo.setPosition(0.65);
+
          /*
             shooterMotor.setPower(0);
             liftMotor.setPower(0);

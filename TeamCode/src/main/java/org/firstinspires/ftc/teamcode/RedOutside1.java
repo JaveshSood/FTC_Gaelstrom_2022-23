@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -33,8 +32,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="BlueOutside1", group="Autonomous")
-public class BlueOutside1 extends LinearOpMode{
+@Autonomous(name="RedOutside1", group="Autonomous")
+public class RedOutside1 extends LinearOpMode{
     MSJHardware robot = new MSJHardware(); // Use our hardware
 
     private ElapsedTime     runtime = new ElapsedTime();
@@ -107,16 +106,10 @@ public class BlueOutside1 extends LinearOpMode{
         //Strafe right to park
         robot.clawServo.setPosition(0.26);
         encoderDrive(DRIVE_SPEED, 2, 2, 5.0);
-        encoderStrafe(DRIVE_SPEED, 33, -33, 5.0);
+        encoderStrafe(DRIVE_SPEED, -33, 33, 5.0);
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
-
-
-
-
-
-
 
 
     }
@@ -164,6 +157,12 @@ public class BlueOutside1 extends LinearOpMode{
             robot.frontRightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.backLeftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.backRightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            robot.frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
+            robot.frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+            robot.backRightMotor.setDirection(DcMotor.Direction.FORWARD);
+            robot.backLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+
 
             // reset the timeout time and start motion.
             runtime.reset();

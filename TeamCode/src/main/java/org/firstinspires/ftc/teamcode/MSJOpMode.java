@@ -79,11 +79,11 @@ public class MSJOpMode extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-            /*telemetry.addData("Red:", robot.colorSensor.red());
+            telemetry.addData("Red:", robot.colorSensor.red());
             telemetry.addData("Blue:", robot.colorSensor.blue());
             telemetry.addData("Green:",robot.colorSensor.green());
-            robot.dropperServo.setPosition(.74);
-*/
+            //robot.dropperServo.setPosition(.74);
+
             // Setup a variable for each drive wheel to save power level for telemetry
             //  double shootPower;
             double frontRightPower;
@@ -105,7 +105,7 @@ public class MSJOpMode extends LinearOpMode {
             double y = -gamepad1.right_stick_x;
             double x = -gamepad1.left_stick_x;
             double rx = gamepad1.left_stick_y;
-            double lift = gamepad2.right_stick_y;
+            double lift = -gamepad2.right_stick_y;
             //double armup = gamepad2.left_trigger;
             //double armdown = gamepad2.right_trigger;
 
@@ -129,10 +129,10 @@ public class MSJOpMode extends LinearOpMode {
 
 
             // shootPower    = Range.clip(shoot, -1.0, 1.0) ;
-            frontRightPower = Range.clip(x - rx + y, -.7, .7);
-            frontLeftPower = Range.clip(y + x + rx, -.7, .7);
-            backRightPower = Range.clip(-x - rx + y, -.7, .7);
-            backLeftPower = Range.clip(-x + rx + y, -.7, .7);
+            frontRightPower = Range.clip(x - rx + y, -.5, .5);
+            frontLeftPower = Range.clip(y + x + rx, -.5, .5);
+            backRightPower = Range.clip(-x - rx + y, -.5, .5);
+            backLeftPower = Range.clip(-x + rx + y, -.5, .5);
             extenderMotorPower = Range.clip(lift, -1.0, 1.0);
 
 
@@ -303,6 +303,7 @@ public class MSJOpMode extends LinearOpMode {
             telemetry.addData("Front Left Motor", "frontLeftMotor", frontLeftPower);
             telemetry.addData("Back Right Motor", "backRightMotor", backRightPower);
             telemetry.addData("Back Left Motor", "backLeftMotor", backLeftPower);
+
             //    telemetry.addData("Claw:",robot.clawServo.getPosition());
             telemetry.update();
 

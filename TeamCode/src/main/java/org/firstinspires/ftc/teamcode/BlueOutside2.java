@@ -33,8 +33,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="BlueOutside1", group="Autonomous")
-public class BlueOutside1 extends LinearOpMode{
+@Autonomous(name="BlueOutside2", group="Autonomous")
+public class BlueOutside2 extends LinearOpMode{
     MSJHardware robot = new MSJHardware(); // Use our hardware
 
     private ElapsedTime     runtime = new ElapsedTime();
@@ -62,9 +62,9 @@ public class BlueOutside1 extends LinearOpMode{
         telemetry.addData("Status", "Resetting Encoders");    //
         telemetry.update();
 
-        //  telemetry.addData("Red:", robot.colorSensor.red());
-        //  telemetry.addData("Blue:", robot.colorSensor.blue());
-        //  telemetry.addData("Green:",robot.colorSensor.green());
+         telemetry.addData("Red:", robot.colorSensor.red());
+          telemetry.addData("Blue:", robot.colorSensor.blue());
+          telemetry.addData("Green:",robot.colorSensor.green());
 
         robot.frontLeftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.frontRightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -103,19 +103,61 @@ public class BlueOutside1 extends LinearOpMode{
 
 
         // Drive forwards to get off wall
-
-        //Strafe right to park
+        //cone auto
         robot.clawServo.setPosition(0.26);
-        encoderDrive(DRIVE_SPEED, 2, 2, 5.0);
-        encoderStrafe(DRIVE_SPEED, 33, -33, 5.0);
+        encoderDrive(DRIVE_SPEED, 4, 4, 2);
+        encoderStrafe(DRIVE_SPEED*0.8, -67, 67, 15.0);   //strafe
+        encoderStrafe(DRIVE_SPEED, 3, -3, 3);
+        robot.extenderMotor.setPower(1);                                       //lift
+        sleep(3000);
+        robot.extenderMotor.setPower(.0);
+        encoderDrive(DRIVE_SPEED, 6, 6, 2.6);    //line up with rod
+        robot.clawServo.setPosition(0.65);                                      //drop
+        sleep(1000);
+        encoderDrive(DRIVE_SPEED, -5, -5, 2.6);    //go back
+        encoderStrafe(DRIVE_SPEED, 6, -6, 5);
+        encoderDrive(DRIVE_SPEED*0.5, -20, 20, 7);
+        encoderStrafe(DRIVE_SPEED, 2, -2, 3 );
+        encoderDrive(DRIVE_SPEED, 6,6,5);
 
-        telemetry.addData("Path", "Complete");
-        telemetry.update();
+        double green =robot.colorSensor.red()/robot.colorSensor.blue();
+        double yellow = robot.colorSensor.red()/robot.colorSensor.green();
+        double purple = robot.colorSensor.green()/robot.colorSensor.blue();
+        sleep(4000);
+        if(robot.colorSensor.red()/robot.colorSensor.blue()>=0.8 && robot.colorSensor.red()/robot.colorSensor.blue()<=1.2) {
+            encoderStrafe(DRIVE_SPEED*2, 4, -4, 5);
+            encoderDrive(DRIVE_SPEED*2, -14, -14, 12);
+            encoderDrive(DRIVE_SPEED, -18, 18, 7);
+            encoderDrive(DRIVE_SPEED*2, -22, -22, 7);
+        }
+
+            else if(robot.colorSensor.red()/robot.colorSensor.green()>=0.9 && robot.colorSensor.red()/robot.colorSensor.green()<=1.1){
+            encoderStrafe(DRIVE_SPEED*2, 4, -4, 5);
+            encoderDrive(DRIVE_SPEED*2, -14, -14, 12);
+            encoderDrive(DRIVE_SPEED, -18, 18, 7);
+        }
+
+        else if (robot.colorSensor.blue()/robot.colorSensor.green()>=1.0) {
 
 
+            encoderStrafe(DRIVE_SPEED*2, 4, -4, 5);
+            encoderDrive(DRIVE_SPEED*2, -14, -14, 12);
+            encoderDrive(DRIVE_SPEED, -18, 18, 7);
+            encoderDrive(DRIVE_SPEED*2, 22, 22, 7);
+        }
+           else {
+            encoderStrafe(DRIVE_SPEED*2, 4, -4, 5);
+            encoderDrive(DRIVE_SPEED*2, -14, -14, 12);
+            encoderDrive(DRIVE_SPEED, -18, 18, 7);
+            encoderDrive(DRIVE_SPEED*2, 22, 22, 7);
+        }
 
 
-
+        //encoderStrafe(DRIVE_SPEED, -65, 65, 5.0);   //strafe
+        //encoderDrive(DRIVE_SPEED, -25, -25, 2.6);    //go back
+       // robot.extenderMotor.setPower(-.6);                                       //un-lift
+        //sleep(5400);
+        //robot.extenderMotor.setPower(0);                                       //stop
 
 
 

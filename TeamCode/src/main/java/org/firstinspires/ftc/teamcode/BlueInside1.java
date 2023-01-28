@@ -111,7 +111,6 @@ public class BlueInside1 extends LinearOpMode{
         //turn towards carousel
         sleep(1500);
 
-
         telemetry.addData("Path", "Complete");
         telemetry.update();
 
