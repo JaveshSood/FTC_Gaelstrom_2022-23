@@ -106,11 +106,11 @@ public class RedInside2 extends LinearOpMode{
         //cone auto
         robot.clawServo.setPosition(0.26);
         encoderDrive(DRIVE_SPEED, 4, 4, 2);
-        encoderStrafe(DRIVE_SPEED*0.8, -67, 67, 15.0);   //strafe
-        encoderStrafe(DRIVE_SPEED, 3, -3, 3);
+        encoderStrafe(DRIVE_SPEED*0.5, -45, 45, 15.0);   //strafe
+        encoderStrafe(DRIVE_SPEED, 3.5, -3.5, 3);
         robot.extenderMotor.setPower(1);                                       //lift
-        sleep(3000);
-        robot.extenderMotor.setPower(.0);
+        sleep(2100);
+        robot.extenderMotor.setPower(0);
         encoderDrive(DRIVE_SPEED, 6, 6, 2.6);    //line up with rod
         robot.clawServo.setPosition(0.65);                                      //drop
         sleep(1000);
@@ -119,37 +119,38 @@ public class RedInside2 extends LinearOpMode{
         encoderDrive(DRIVE_SPEED*0.5, -20, 20, 7);
         encoderStrafe(DRIVE_SPEED, 2, -2, 3 );
         encoderDrive(DRIVE_SPEED, 6,6,5);
+        encoderStrafe(DRIVE_SPEED, 2.7, -2.7, 3 );
 
         double green =robot.colorSensor.red()/robot.colorSensor.blue();
         double yellow = robot.colorSensor.red()/robot.colorSensor.green();
-        double purple = robot.colorSensor.green()/robot.colorSensor.blue();
+        double purple = robot.colorSensor.blue()/robot.colorSensor.green();
         sleep(4000);
-        if(robot.colorSensor.red()/robot.colorSensor.blue()>=0.8 && robot.colorSensor.red()/robot.colorSensor.blue()<=1.2) {
-            encoderStrafe(DRIVE_SPEED*2, 4, -4, 5);
-            encoderDrive(DRIVE_SPEED*2, -14, -14, 12);
-            encoderDrive(DRIVE_SPEED, -18, 18, 7);
-            encoderDrive(DRIVE_SPEED*2, -22, -22, 7);
+        if(robot.colorSensor.red()/robot.colorSensor.blue()>=0.9 && robot.colorSensor.red()/robot.colorSensor.blue()<=1.1) {
+            encoderStrafe(DRIVE_SPEED, -4, 4, 5);
+            encoderDrive(DRIVE_SPEED, -14, -14, 12);
+            encoderDrive(DRIVE_SPEED, 19, -19, 7);
+            encoderDrive(DRIVE_SPEED, -22, -22, 7);
         }
 
-        else if(robot.colorSensor.red()/robot.colorSensor.green()>=0.9 && robot.colorSensor.red()/robot.colorSensor.green()<=1.1){
-            encoderStrafe(DRIVE_SPEED*2, 4, -4, 5);
-            encoderDrive(DRIVE_SPEED*2, -14, -14, 12);
-            encoderDrive(DRIVE_SPEED, -18, 18, 7);
+        else if(robot.colorSensor.red()/robot.colorSensor.green()>=0.8 && robot.colorSensor.red()/robot.colorSensor.green()<=1.2){
+            encoderStrafe(DRIVE_SPEED, -4, 4, 5);
+            encoderDrive(DRIVE_SPEED, -14, -14, 12);
+            encoderDrive(DRIVE_SPEED, 19, -19, 7);
         }
 
         else if (robot.colorSensor.blue()/robot.colorSensor.green()>=1.0) {
 
 
-            encoderStrafe(DRIVE_SPEED*2, 4, -4, 5);
-            encoderDrive(DRIVE_SPEED*2, -14, -14, 12);
-            encoderDrive(DRIVE_SPEED, -18, 18, 7);
-            encoderDrive(DRIVE_SPEED*2, 22, 22, 7);
+            encoderStrafe(DRIVE_SPEED, -4, 4, 5);
+            encoderDrive(DRIVE_SPEED, -14, -14, 12);
+            encoderDrive(DRIVE_SPEED, 19, -19, 7);
+            encoderDrive(DRIVE_SPEED, 22, 22, 7);
         }
         else {
-            encoderStrafe(DRIVE_SPEED*2, 4, -4, 5);
-            encoderDrive(DRIVE_SPEED*2, -14, -14, 12);
-            encoderDrive(DRIVE_SPEED, -18, 18, 7);
-            encoderDrive(DRIVE_SPEED*2, 22, 22, 7);
+            encoderStrafe(DRIVE_SPEED, -4, 4, 5);
+            encoderDrive(DRIVE_SPEED, -14, -14, 12);
+            encoderDrive(DRIVE_SPEED, 18, -18, 7);
+            encoderDrive(DRIVE_SPEED, 22, 22, 7);
         }
 
 
